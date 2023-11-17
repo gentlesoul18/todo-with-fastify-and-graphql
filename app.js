@@ -1,23 +1,22 @@
-// mongo db
-// require("./config/db");
+const fastify = require("fastify")({ logger: true });
+const mongoose = require("mongoose");
 
-const express = require("express");
+fastify.register(require("./routes/index"))
 
-const app = express();
-const PORT = 6000;
 
-//routers
-// const userRouter = require("./api/user");
+const start = async () => {
+  try {
+    await fastify.listen({port:3000})
+  } catch (error) {
+    fastify.log.error(error);
+    process.exit(1);
+  }
+}
 
-//For accepting Post form data submission
-const bodyParser = require("express").json();
-app.use(bodyParser);
-
-//user routers
-// app.use("/user", userRouter);
-
-app.listen(PORT, (error) => {
-  if (!error)
-    console.log(`Server is running and app is listening on port ${PORT}`);
-  else console.log("Error occured, server can't start \n" + error);
-});
+// connect to db
+mongoose.connect('mongodb://localhost/todo').then((err) => {
+  console.log('Database connection established')
+  start();
+}).catch(err => {
+  console.error(err);
+})
