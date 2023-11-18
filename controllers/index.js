@@ -1,3 +1,3 @@
 exports.landingPage = async(request, reply)=>{
-    reply.send({ message: "Hello, World!" });
+    return { message: "Hello, World!" };
   }

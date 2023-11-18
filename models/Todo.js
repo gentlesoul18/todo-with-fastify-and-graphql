@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const todoSchema = new mongoose.Schema({
     title: String,
     description: String,
-    is_deleted: Boolean,
+    deleted: {
+        type: Boolean,
+        default: false
+    },
     status: {
         type: String,
+        default: 'Backlog',
         enum: ['Backlog', 'In Progress', 'Completed', 'Due', 'Trash']
     },
     created: {
