@@ -38,7 +38,6 @@ exports.updateTodo = async (request, reply) => {
     try {
         const id = request.params.id
         const todo = request.body
-        console.log(todo, id)
         const { ...updateData } = todo
         const todoUpdate = await Todo.findByIdAndUpdate(id, updateData, { new: true })
         return todoUpdate

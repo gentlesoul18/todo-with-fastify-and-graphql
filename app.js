@@ -28,6 +28,7 @@ fastify.register(require("@fastify/swagger-ui"), {
 // routes
 fastify.register(require("./routes/index"), {prefix:'/'})
 fastify.register(require("./routes/todo"), {prefix:'/todos'})
+fastify.register(require("./routes/user"), {prefix:'/users'})
 
 
 const start = async () => {
